@@ -29,6 +29,7 @@ class Program
                 champion = player;
             }
         }
+
         DisplayBoard(games, ColumnCount, boardState);
 
         if (champion != null)
@@ -40,10 +41,41 @@ class Program
             Console.WriteLine("무승부입니다!");
         }
 
-        WaitEnter();
+        if (PlayAgain())
+        {
+            Main();   
+            return;
+        }
+        else
+        {
+            WaitEnter();
+        }
     }
 
+    static bool PlayAgain()
+    {
+        while (true)
+        {
 
+            Console.Write("다시? ");
+            string input = Console.ReadLine();
+
+            input = input.Trim().ToUpper();
+            if(input == string.Empty)
+            {
+                Console.Write("Y/N ?");
+            }
+            if (input == "Y")
+            {
+                return true;
+            }
+            if (input == "N")
+            {
+                return false;
+            }           
+
+        }
+    }
     static int[] CreateTictac(int GameCount)
     {
         int[] games = new int[GameCount];
